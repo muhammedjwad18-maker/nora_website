@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پزیشکی من — چوونەژوورەوەی دکتۆر</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="switchLang('ckb')" id="btn-ckb">کوردی</button>
+      <button class="lang-btn" onclick="switchLang('ar')" id="btn-ar">العربية</button>
+      <button class="lang-btn" onclick="switchLang('en')" id="btn-en">English</button>
+    </div>
+
+    <div class="logo">
+      <div class="logo-icon">👨‍⚕️</div>
+      <h1 data-i18n="appName">پزیشکی من</h1>
+      <p class="tagline" data-i18n="tagline">پانێلی دکتۆر</p>
+    </div>
+
+    <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="login-email" data-i18n="email">ئیمەیڵ</label>
+        <input type="email" id="login-email" required placeholder="doctor@example.com">
+      </div>
+      <div class="form-group">
+        <label for="login-password" data-i18n="password">پاسوۆرد</label>
+        <input type="password" id="login-password" required placeholder="••••••••">
+      </div>
+      <div id="login-error" class="error-message hidden"></div>
+      <button type="submit" class="btn-primary" id="login-btn" data-i18n="login">چوونەژوورەوە</button>
+    </form>
+
+    <div class="login-footer">
+      <p>© 2026 پزیشکی من — هەموو مافەکان پارێزراون</p>
+      <p style="margin-top: 8px; font-size: 11px;" data-i18n="onlyDoctors">تەنها بۆ دکتۆرەکان</p>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

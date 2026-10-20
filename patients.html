@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پزیشکی من — نەخۆشەکان</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-page">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-logo">
+        <span>👥</span>
+        <h1 data-i18n="allPatients">هەموو نەخۆشەکان</h1>
+      </div>
+      <div class="header-actions">
+        <a href="dashboard.html" class="btn-logout">← <span data-i18n="back">گەڕانەوە</span></a>
+        <div class="lang-switcher-small">
+          <button onclick="switchLang('ckb')">کوردی</button>
+          <button onclick="switchLang('ar')">العربية</button>
+          <button onclick="switchLang('en')">English</button>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()" data-i18n="logout">چوونەدەرەوە</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <!-- Search -->
+    <div class="welcome-card">
+      <h2 data-i18n="searchPatients">🔍 گەڕان بۆ نەخۆش</h2>
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="ناو یان ژمارەی مۆبایل..."
+        oninput="filterPatients()"
+        style="width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 12px; font-size: 15px; font-family: inherit; margin-top: 12px;"
+      >
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label" data-i18n="totalPatients">کۆی نەخۆشەکان</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-value" id="stat-visits">0</div>
+        <div class="stat-label" data-i18n="totalVisits">کۆی سەردانەکان</div>
+      </div>
+    </div>
+
+    <!-- Patients List -->
+    <div class="section">
+      <h3 data-i18n="patientsList">📋 لیستی نەخۆشەکان</h3>
+      <div id="patients-list" class="appointments-list">
+        <div class="loading" data-i18n="loading">چاوەڕوان بە...</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

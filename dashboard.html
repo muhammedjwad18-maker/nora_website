@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پزیشکی من — پانێلی دکتۆر</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-page">
+<header class="dashboard-header">
+  <div class="header-content">
+    <div class="header-logo">
+      <span>👨‍⚕️</span>
+      <h1 data-i18n="doctorPanel">پانێلی دکتۆر</h1>
+    </div>
+    <div class="header-actions">
+      <!-- ✅ دوگمەی نەخۆشەکان -->
+      <a href="patients.html" class="btn-nav" data-i18n="allPatients">👥 نەخۆشەکان</a>
+      <a href="subscription.html" class="btn-nav">💳 <span data-i18n="subscription">بەشداریکردن</span></a>
+      <div class="lang-switcher-small">
+        <button onclick="switchLang('ckb')">کوردی</button>
+        <button onclick="switchLang('ar')">العربية</button>
+        <button onclick="switchLang('en')">English</button>
+      </div>
+      <button class="btn-logout" onclick="handleLogout()" data-i18n="logout">چوونەدەرەوە</button>
+    </div>
+  </div>
+</header>
+
+  <main class="dashboard-main">
+    <div class="welcome-card">
+      <h2 id="welcome-text" data-i18n="welcome">بەخێربێیت</h2>
+      <p id="doctor-specialty"></p>
+      <div id="subscription-status" class="subscription-badge"></div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-value" id="stat-today">0</div>
+        <div class="stat-label" data-i18n="today">نۆرەی ئەمڕۆ</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-value" id="stat-pending">0</div>
+        <div class="stat-label" data-i18n="pending">چاوەڕوان</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value" id="stat-accepted">0</div>
+        <div class="stat-label" data-i18n="accepted">قبوڵکراو</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-value" id="stat-patients">0</div>
+        <div class="stat-label" data-i18n="patients">نەخۆشەکان</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 data-i18n="newRequests">🔔 داواکارییە نوێیەکان</h3>
+      <div id="pending-list" class="appointments-list">
+        <div class="loading" data-i18n="loading">چاوەڕوان بە...</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 data-i18n="todayAppointments">📅 نۆرەکانی ئەمڕۆ</h3>
+      <div id="today-list" class="appointments-list">
+        <div class="loading" data-i18n="loading">چاوەڕوان بە...</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 data-i18n="upcomingAppointments">📆 نۆرەکانی داهاتوو</h3>
+      <div id="upcoming-list" class="appointments-list">
+        <div class="loading" data-i18n="loading">چاوەڕوان بە...</div>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

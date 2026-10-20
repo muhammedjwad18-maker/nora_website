@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پزیشکی من — وردەکاری نەخۆش</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-page">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-logo">
+        <span>👨‍⚕️</span>
+        <h1 data-i18n="patientDetail">وردەکاری نەخۆش</h1>
+      </div>
+      <div class="header-actions">
+        <button class="btn-logout" onclick="goBack()">← <span data-i18n="back">گەڕانەوە</span></button>
+        <button class="btn-logout" onclick="handleLogout()" data-i18n="logout">چوونەدەرەوە</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="welcome-card">
+      <h2 id="patient-name">چاوەڕوان بە...</h2>
+      <p id="patient-phone"></p>
+      <p id="appointment-info"></p>
+    </div>
+
+    <div class="tabs" style="margin-bottom: 24px;">
+      <button class="tab active" onclick="switchTab('medical-record', this)" data-i18n="medicalRecord">تۆماری پزیشکی</button>
+      <button class="tab" onclick="switchTab('vitals', this)" data-i18n="vitals">نیشانەکانی ژیان</button>
+      <button class="tab" onclick="switchTab('allergies', this)" data-i18n="allergies">هەستیارییەکان</button>
+      <button class="tab" onclick="switchTab('prescriptions', this)" data-i18n="prescriptions">دەرمانەکان</button>
+    </div>
+
+    <!-- Tab: Medical Record -->
+    <div id="tab-medical-record" class="tab-content">
+      <div class="section">
+        <h3 data-i18n="newMedicalRecord">📋 تۆماری پزیشکی نوێ</h3>
+        <form id="medical-record-form" onsubmit="saveMedicalRecord(event)">
+          <div class="form-group">
+            <label data-i18n="diagnosis">دەستنیشانکردن (Diagnosis)</label>
+            <textarea id="diagnosis" rows="3" placeholder="دەستنیشانکردن..."></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="symptoms">نیشانەکان (Symptoms)</label>
+            <textarea id="symptoms" rows="3" placeholder="نیشانەکان..."></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="examination">فەحس (Examination)</label>
+            <textarea id="examination" rows="3" placeholder="فەحس..."></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="result">ئەنجام (Result)</label>
+            <textarea id="result" rows="3" placeholder="ئەنجام..."></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="treatment">چارەسەر (Treatment)</label>
+            <textarea id="treatment" rows="3" placeholder="چارەسەر..."></textarea>
+          </div>
+          <div class="form-group">
+            <label data-i18n="notes">تێبینی (Notes)</label>
+            <textarea id="notes" rows="3" placeholder="تێبینی..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" id="save-record-btn">💾 <span data-i18n="save">پاشەکەوتکردن</span></button>
+        </form>
+      </div>
+      <div class="section">
+        <h3 data-i18n="previousRecords">📚 تۆمارەکانی پێشوو</h3>
+        <div id="records-list"><div class="loading" data-i18n="loading">چاوەڕوان بە...</div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Vitals -->
+    <div id="tab-vitals" class="tab-content hidden">
+      <div class="section">
+        <h3 data-i18n="vitalSigns">💓 نیشانەکانی ژیان</h3>
+        <form id="vitals-form" onsubmit="saveVitals(event)">
+          <div class="vitals-grid">
+            <div class="form-group">
+              <label data-i18n="bpSystolic">فشاری خوێن (Systolic)</label>
+              <input type="number" id="bp-systolic" placeholder="120">
+            </div>
+            <div class="form-group">
+              <label data-i18n="bpDiastolic">فشاری خوێن (Diastolic)</label>
+              <input type="number" id="bp-diastolic" placeholder="80">
+            </div>
+            <div class="form-group">
+              <label data-i18n="heartRate">لێدانی دڵ</label>
+              <input type="number" id="heart-rate" placeholder="72">
+            </div>
+            <div class="form-group">
+              <label data-i18n="temperature">پلەی گەرمی</label>
+              <input type="number" step="0.1" id="temperature" placeholder="37.0">
+            </div>
+            <div class="form-group">
+              <label data-i18n="oxygen">ئۆکسجین (%)</label>
+              <input type="number" id="oxygen" placeholder="98">
+            </div>
+            <div class="form-group">
+              <label data-i18n="bloodSugar">شەکر</label>
+              <input type="number" id="blood-sugar" placeholder="100">
+            </div>
+            <div class="form-group">
+              <label data-i18n="weight">کێش (kg)</label>
+              <input type="number" step="0.1" id="weight" placeholder="70">
+            </div>
+            <div class="form-group">
+              <label data-i18n="height">بەرزی (cm)</label>
+              <input type="number" id="height" placeholder="170">
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" id="save-vitals-btn">💾 <span data-i18n="save">پاشەکەوتکردن</span></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tab: Allergies -->
+    <div id="tab-allergies" class="tab-content hidden">
+      <div class="section">
+        <h3 data-i18n="newAllergy">⚠️ هەستیاری نوێ</h3>
+        <form id="allergy-form" onsubmit="saveAllergy(event)">
+          <div class="form-group">
+            <label data-i18n="allergyName">ناوی هەستیاری</label>
+            <input type="text" id="allergy-name" placeholder="وەک: پەنسلین">
+          </div>
+          <div class="form-group">
+            <label data-i18n="allergyType">جۆر</label>
+            <select id="allergy-type">
+              <option value="medication" data-i18n="medication">دەرمان</option>
+              <option value="food" data-i18n="food">خواردن</option>
+              <option value="environment" data-i18n="environment">ژینگە</option>
+              <option value="other" data-i18n="other">هیتر</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="severity">توندی</label>
+            <select id="allergy-severity">
+              <option value="mild" data-i18n="mild">کەم</option>
+              <option value="moderate" data-i18n="moderate">مامناوەند</option>
+              <option value="severe" data-i18n="severe">زۆر</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary" id="save-allergy-btn">💾 <span data-i18n="save">پاشەکەوتکردن</span></button>
+        </form>
+      </div>
+      <div class="section">
+        <h3 data-i18n="previousAllergies">📋 هەستیارییەکانی پێشوو</h3>
+        <div id="allergies-list"><div class="loading" data-i18n="loading">چاوەڕوان بە...</div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Prescriptions -->
+    <div id="tab-prescriptions" class="tab-content hidden">
+      <div class="section">
+        <h3 data-i18n="newPrescription">💊 دەرمانی نوێ</h3>
+        <form id="prescription-form" onsubmit="savePrescription(event)">
+          <div class="form-group">
+            <label data-i18n="medicineName">ناوی دەرمان</label>
+            <input type="text" id="medicine-name" required placeholder="وەک: Paracetamol">
+          </div>
+          <div class="form-group">
+            <label data-i18n="dosage">بڕ (Dosage)</label>
+            <input type="text" id="dosage" placeholder="500mg">
+          </div>
+          <div class="form-group">
+            <label data-i18n="frequency">چەند جار</label>
+            <input type="text" id="frequency" placeholder="2 جار لە ڕۆژێکدا">
+          </div>
+          <div class="form-group">
+            <label data-i18n="duration">ماوە</label>
+            <input type="text" id="duration" placeholder="7 ڕۆژ">
+          </div>
+          <div class="form-group">
+            <label data-i18n="instructions">ڕێنمایی</label>
+            <textarea id="instructions" rows="2" placeholder="ڕێنمایی..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" id="save-prescription-btn">💾 <span data-i18n="save">پاشەکەوتکردن</span></button>
+        </form>
+      </div>
+      <div class="section">
+        <h3 data-i18n="previousPrescriptions">📋 دەرمانەکانی پێشوو</h3>
+        <div id="prescriptions-list"><div class="loading" data-i18n="loading">چاوەڕوان بە...</div></div>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

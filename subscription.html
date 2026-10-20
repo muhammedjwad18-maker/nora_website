@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پزیشکی من — بەشداریکردن</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dashboard-page">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-logo">
+        <span>💳</span>
+        <h1 data-i18n="subscription">بەشداریکردن</h1>
+      </div>
+      <div class="header-actions">
+        <a href="dashboard.html" class="btn-logout">← <span data-i18n="back">گەڕانەوە</span></a>
+        <div class="lang-switcher-small">
+          <button onclick="switchLang('ckb')">کوردی</button>
+          <button onclick="switchLang('ar')">العربية</button>
+          <button onclick="switchLang('en')">English</button>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()" data-i18n="logout">چوونەدەرەوە</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <!-- Status Card -->
+    <div id="status-card" class="subscription-status-card">
+      <div class="loading" data-i18n="loading">چاوەڕوان بە...</div>
+    </div>
+
+    <!-- Plans -->
+    <div class="section">
+      <h3 data-i18n="choosePlan">📦 پاکێج هەڵبژێرە</h3>
+      <div id="plans-grid" class="plans-grid">
+        <div class="loading" data-i18n="loading">چاوەڕوان بە...</div>
+      </div>
+    </div>
+
+    <!-- Payment Info (دوای هەڵبژاردن) -->
+    <div id="payment-section" class="section hidden">
+      <h3 data-i18n="paymentInfo">💳 زانیاری پارەدان</h3>
+      
+      <div class="payment-card">
+        <!-- QR Code -->
+        <div id="qr-container" class="qr-container hidden">
+          <h4 data-i18n="scanQR">📱 سکان بکە بۆ پارەدان</h4>
+          <img id="qr-image" src="" alt="QR Code" class="qr-image">
+        </div>
+
+        <!-- Bank Cards -->
+        <div class="bank-cards">
+          <h4 data-i18n="bankCards">🏦 کارتەکانی بانک</h4>
+          <div id="cards-list"></div>
+        </div>
+
+        <!-- Instructions -->
+        <div id="instructions-container" class="instructions-box hidden">
+          <h4 data-i18n="instructions">📝 ڕێنمایی</h4>
+          <p id="instructions-text"></p>
+        </div>
+
+        <!-- Payment Confirmation -->
+        <div class="payment-action">
+          <p class="payment-note" data-i18n="afterPayment">دوای پارەدان، کلیک لە دوگمەی خوارەوە بکە:</p>
+          <button class="btn-primary" onclick="submitPaymentRequest()" id="submit-payment-btn">
+            ✅ <span data-i18n="paidConfirm">پارەم داوە — ناردنی داواکاری</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Request -->
+    <div id="pending-request" class="section hidden">
+      <div class="pending-card">
+        <div class="pending-icon">⏳</div>
+        <h3 data-i18n="pendingRequest">داواکاری چاوەڕوان</h3>
+        <p data-i18n="pendingRequestDesc">داواکاری پارەدانەکەت نێردراوە. چاوەڕوانی پەسەندکردنی ئەدمین بە.</p>
+        <div id="pending-details"></div>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="section">
+      <h3 data-i18n="paymentHistory">📜 مێژووی پارەدان</h3>
+      <div id="history-list" class="appointments-list">
+        <div class="loading" data-i18n="loading">چاوەڕوان بە...</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
