@@ -407,7 +407,7 @@ function switchLang(lang) {
 }
 
 // ============================================================
-// ✅ Login — تەنها دکتۆر
+// ✅ Login — تەنها دکتۆر (چاککراوە بۆ هێنانی ژمارە)
 // ============================================================
 async function handleLogin(event) {
   event.preventDefault();
@@ -432,7 +432,7 @@ async function handleLogin(event) {
     // ✅ پشکنینی ڕۆڵ — تەنها دکتۆر
     const { data: profile, error: profileError } = await supabaseClient
       .from('profiles')
-      .select('role')
+      .select('role, phone')
       .eq('id', data.user.id)
       .single();
     
@@ -443,6 +443,17 @@ async function handleLogin(event) {
       btn.disabled = false;
       btn.textContent = t('login');
       return;
+    }
+    
+    // ✅ چارەسەری سەرەکی: ئەگەر ژمارە لە profiles بەتاڵ بوو، لە auth بیخوێنەوە
+    if (!profile.phone) {
+      const phoneFromAuth = data.user.user_metadata?.phone || data.user.phone;
+      if (phoneFromAuth) {
+        await supabaseClient
+          .from('profiles')
+          .update({ phone: phoneFromAuth })
+          .eq('id', data.user.id);
+      }
     }
     
     window.location.href = 'dashboard.html';
@@ -473,10 +484,25 @@ async function initDashboard() {
   
   const user = session.user;
   
+  // ✅ هێنانی پڕۆفایل لەگەڵ ژمارە
   const { data: profile } = await supabaseClient
-    .from('profiles').select('*').eq('id', user.id).single();
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
   
   if (profile?.role !== 'doctor') { window.location.href = 'index.html'; return; }
+  
+  // ✅ چارەسەری ژمارە لە کاتی کردنەوەی داشبۆردیش
+  if (!profile.phone) {
+    const phoneFromAuth = user.user_metadata?.phone || user.phone;
+    if (phoneFromAuth) {
+      await supabaseClient
+        .from('profiles')
+        .update({ phone: phoneFromAuth })
+        .eq('id', user.id);
+    }
+  }
   
   const { data: doctor } = await supabaseClient
     .from('doctors').select('*').eq('id', user.id).single();
@@ -866,21 +892,6 @@ async function loadPrescriptions() {
 }
 
 // ============================================================
-// ✅ Router
-// ============================================================
-document.addEventListener('DOMContentLoaded', () => {
-  switchLang(currentLang);
-  
-  const path = window.location.pathname;
-  
-  if (path.includes('dashboard.html')) {
-    initDashboard();
-  } else if (path.includes('patient-detail.html')) {
-    initPatientDetail();
-  }
-});
-
-// ============================================================
 // ✅ Patients Page — هەموو نەخۆشەکان
 // ============================================================
 let allPatients = [];
@@ -1010,24 +1021,6 @@ function openPatientFromList(patientId) {
   window.location.href = `patient-detail.html?patient_id=${patientId}`;
 }
 
-// ============================================================
-// ✅ Router — زیادکردنی patients.html
-// ============================================================
-// لە کۆتایی app.js دا، لە DOMContentLoaded بگۆڕە:
-
-document.addEventListener('DOMContentLoaded', () => {
-  switchLang(currentLang);
-  
-  const path = window.location.pathname;
-  
-  if (path.includes('dashboard.html')) {
-    initDashboard();
-  } else if (path.includes('patient-detail.html')) {
-    initPatientDetail();
-  } else if (path.includes('patients.html')) {
-    initPatientsPage();
-  }
-});
 // ============================================================
 // ✅ Subscription Page — بەشداریکردن
 // ============================================================
@@ -1424,10 +1417,8 @@ function formatDate(dateStr) {
 }
 
 // ============================================================
-// ✅ Router — زیادکردنی subscription.html
+// ✅ Router
 // ============================================================
-// لە DOMContentLoaded بگۆڕە:
-
 document.addEventListener('DOMContentLoaded', () => {
   switchLang(currentLang);
   
