@@ -24,49 +24,49 @@ const translations = {
     accepted: 'قبوڵکراو',
     rejected: 'ڕەتکراوە',
     patients: 'نەخۆشەکان',
-     subscription: 'بەشداریکردن',
-  choosePlan: '📦 پاکێج هەڵبژێرە',
-  choosePlanDesc: 'تکایە پاکێجێک هەڵبژێرە بۆ چالاککردنی ئەکاونتەکەت',
-  monthlyPlan: 'پاکێجی ١ مانگ',
-  quarterlyPlan: 'پاکێجی ٦ مانگ',
-  yearlyPlan: 'پاکێجی ١ ساڵ',
-  days: 'ڕۆژ',
-  bestValue: 'باشترین نرخ',
-  selectPlan: 'هەڵبژاردنی پاکێج',
-  selectPlanFirst: 'تکایە سەرەتا پاکێجێک هەڵبژێرە',
-  feature1: 'چالاککردنی ئەکاونت',
-  feature2: 'پیشاندان لە لیستی دکتۆرەکان',
-  feature3: 'وەرگرتنی نۆرەکان',
-  feature4: 'پشتگیری تایبەت',
-  paymentInfo: '💳 زانیاری پارەدان',
-  scanQR: '📱 سکان بکە بۆ پارەدان',
-  bankCards: '🏦 کارتەکانی بانک',
-  instructions: '📝 ڕێنمایی',
-  copy: 'کۆپی',
-  copied: 'کۆپی کرا',
-  afterPayment: 'دوای پارەدان، کلیک لە دوگمەی خوارەوە بکە:',
-  paidConfirm: 'پارەم داوە — ناردنی داواکاری',
-  requestSent: 'داواکاری نێردرا ✅ — چاوەڕوانی پەسەندکردنی ئەدمین بە',
-  pendingRequest: 'داواکاری چاوەڕوان',
-  pendingRequestDesc: 'داواکاری پارەدانەکەت نێردراوە. چاوەڕوانی پەسەندکردنی ئەدمین بە.',
-  pendingStatus: 'چاوەڕوان',
-  approved: 'قبوڵکراو',
-  rejectedStatus: 'ڕەتکراوە',
-  paymentHistory: '📜 مێژووی پارەدان',
-  noHistory: 'هیچ مێژوویەک نییە',
-  expiryDate: 'بەرواری کۆتایی',
-  daysLeft: 'ڕۆژ ماوە',
+    subscription: 'بەشداریکردن',
+    choosePlan: '📦 پاکێج هەڵبژێرە',
+    choosePlanDesc: 'تکایە پاکێجێک هەڵبژێرە بۆ چالاککردنی ئەکاونتەکەت',
+    monthlyPlan: 'پاکێجی ١ مانگ',
+    quarterlyPlan: 'پاکێجی ٦ مانگ',
+    yearlyPlan: 'پاکێجی ١ ساڵ',
+    days: 'ڕۆژ',
+    bestValue: 'باشترین نرخ',
+    selectPlan: 'هەڵبژاردنی پاکێج',
+    selectPlanFirst: 'تکایە سەرەتا پاکێجێک هەڵبژێرە',
+    feature1: 'چالاککردنی ئەکاونت',
+    feature2: 'پیشاندان لە لیستی دکتۆرەکان',
+    feature3: 'وەرگرتنی نۆرەکان',
+    feature4: 'پشتگیری تایبەت',
+    paymentInfo: '💳 زانیاری پارەدان',
+    scanQR: '📱 سکان بکە بۆ پارەدان',
+    bankCards: '🏦 کارتەکانی بانک',
+    instructions: '📝 ڕێنمایی',
+    copy: 'کۆپی',
+    copied: 'کۆپی کرا',
+    afterPayment: 'دوای پارەدان، کلیک لە دوگمەی خوارەوە بکە:',
+    paidConfirm: 'پارەم داوە — ناردنی داواکاری',
+    requestSent: 'داواکاری نێردرا ✅ — چاوەڕوانی پەسەندکردنی ئەدمین بە',
+    pendingRequest: 'داواکاری چاوەڕوان',
+    pendingRequestDesc: 'داواکاری پارەدانەکەت نێردراوە. چاوەڕوانی پەسەندکردنی ئەدمین بە.',
+    pendingStatus: 'چاوەڕوان',
+    approved: 'قبوڵکراو',
+    rejectedStatus: 'ڕەتکراوە',
+    paymentHistory: '📜 مێژووی پارەدان',
+    noHistory: 'هیچ مێژوویەک نییە',
+    expiryDate: 'بەرواری کۆتایی',
+    daysLeft: 'ڕۆژ ماوە',
     newRequests: '🔔 داواکارییە نوێیەکان',
     todayAppointments: '📅 نۆرەکانی ئەمڕۆ',
     upcomingAppointments: '📆 نۆرەکانی داهاتوو',
-     allPatients: 'نەخۆشەکان',
-  searchPatients: '🔍 گەڕان بۆ نەخۆش',
-  totalPatients: 'کۆی نەخۆشەکان',
-  totalVisits: 'کۆی سەردانەکان',
-  patientsList: '📋 لیستی نەخۆشەکان',
-  lastVisit: 'دوایین سەردان',
-  visits: 'سەردان',
-  noPatients: 'هیچ نەخۆشێک نییە',
+    allPatients: 'نەخۆشەکان',
+    searchPatients: '🔍 گەڕان بۆ نەخۆش',
+    totalPatients: 'کۆی نەخۆشەکان',
+    totalVisits: 'کۆی سەردانەکان',
+    patientsList: '📋 لیستی نەخۆشەکان',
+    lastVisit: 'دوایین سەردان',
+    visits: 'سەردان',
+    noPatients: 'هیچ نەخۆشێک نییە',
     noAppointments: 'هیچ نۆرەیەک نییە',
     loading: 'چاوەڕوان بە...',
     accept: 'قبوڵکردن',
@@ -141,46 +141,46 @@ const translations = {
     pending: 'قيد الانتظار',
     accepted: 'مقبول',
     rejected: 'مرفوض',
-     subscription: 'الاشتراك',
-  choosePlan: '📦 اختر الباقة',
-  choosePlanDesc: 'يرجى اختيار باقة لتفعيل حسابك',
-  monthlyPlan: 'باقة شهر واحد',
-  quarterlyPlan: 'باقة ٦ أشهر',
-  yearlyPlan: 'باقة سنة واحدة',
-  days: 'يوم',
-  bestValue: 'أفضل قيمة',
-  selectPlan: 'اختيار الباقة',
-  selectPlanFirst: 'يرجى اختيار باقة أولاً',
-  feature1: 'تفعيل الحساب',
-  feature2: 'الظهور في قائمة الأطباء',
-  feature3: 'استقبال المواعيد',
-  feature4: 'دعم خاص',
-  paymentInfo: '💳 معلومات الدفع',
-  scanQR: '📱 امسح للدفع',
-  bankCards: '🏦 البطاقات البنكية',
-  instructions: '📝 التعليمات',
-  copy: 'نسخ',
-  copied: 'تم النسخ',
-  afterPayment: 'بعد الدفع، انقر على الزر أدناه:',
-  paidConfirm: 'لقد دفعت — إرسال الطلب',
-  requestSent: 'تم إرسال الطلب ✅ — في انتظار موافقة المشرف',
-  pendingRequest: 'طلب قيد الانتظار',
-  pendingRequestDesc: 'تم إرسال طلب الدفع. في انتظار موافقة المشرف.',
-  pendingStatus: 'قيد الانتظار',
-  approved: 'مقبول',
-  rejectedStatus: 'مرفوض',
-  paymentHistory: '📜 سجل المدفوعات',
-  noHistory: 'لا يوجد سجل',
-  expiryDate: 'تاريخ الانتهاء',
-  daysLeft: 'يوم متبقي',
-     allPatients: 'المرضى',
-  searchPatients: '🔍 البحث عن مريض',
-  totalPatients: 'إجمالي المرضى',
-  totalVisits: 'إجمالي الزيارات',
-  patientsList: '📋 قائمة المرضى',
-  lastVisit: 'آخر زيارة',
-  visits: 'زيارة',
-  noPatients: 'لا يوجد مرضى',
+    subscription: 'الاشتراك',
+    choosePlan: '📦 اختر الباقة',
+    choosePlanDesc: 'يرجى اختيار باقة لتفعيل حسابك',
+    monthlyPlan: 'باقة شهر واحد',
+    quarterlyPlan: 'باقة ٦ أشهر',
+    yearlyPlan: 'باقة سنة واحدة',
+    days: 'يوم',
+    bestValue: 'أفضل قيمة',
+    selectPlan: 'اختيار الباقة',
+    selectPlanFirst: 'يرجى اختيار باقة أولاً',
+    feature1: 'تفعيل الحساب',
+    feature2: 'الظهور في قائمة الأطباء',
+    feature3: 'استقبال المواعيد',
+    feature4: 'دعم خاص',
+    paymentInfo: '💳 معلومات الدفع',
+    scanQR: '📱 امسح للدفع',
+    bankCards: '🏦 البطاقات البنكية',
+    instructions: '📝 التعليمات',
+    copy: 'نسخ',
+    copied: 'تم النسخ',
+    afterPayment: 'بعد الدفع، انقر على الزر أدناه:',
+    paidConfirm: 'لقد دفعت — إرسال الطلب',
+    requestSent: 'تم إرسال الطلب ✅ — في انتظار موافقة المشرف',
+    pendingRequest: 'طلب قيد الانتظار',
+    pendingRequestDesc: 'تم إرسال طلب الدفع. في انتظار موافقة المشرف.',
+    pendingStatus: 'قيد الانتظار',
+    approved: 'مقبول',
+    rejectedStatus: 'مرفوض',
+    paymentHistory: '📜 سجل المدفوعات',
+    noHistory: 'لا يوجد سجل',
+    expiryDate: 'تاريخ الانتهاء',
+    daysLeft: 'يوم متبقي',
+    allPatients: 'المرضى',
+    searchPatients: '🔍 البحث عن مريض',
+    totalPatients: 'إجمالي المرضى',
+    totalVisits: 'إجمالي الزيارات',
+    patientsList: '📋 قائمة المرضى',
+    lastVisit: 'آخر زيارة',
+    visits: 'زيارة',
+    noPatients: 'لا يوجد مرضى',
     patients: 'المرضى',
     newRequests: '🔔 الطلبات الجديدة',
     todayAppointments: '📅 مواعيد اليوم',
@@ -272,46 +272,46 @@ const translations = {
     subscriptionActive: 'Subscription active ✅',
     subscriptionInactive: 'Subscription inactive ⚠️',
     patient: 'Patient',
-     subscription: 'Subscription',
-  choosePlan: '📦 Choose a Plan',
-  choosePlanDesc: 'Please choose a plan to activate your account',
-  monthlyPlan: '1 Month Plan',
-  quarterlyPlan: '6 Months Plan',
-  yearlyPlan: '1 Year Plan',
-  days: 'days',
-  bestValue: 'Best Value',
-  selectPlan: 'Select Plan',
-  selectPlanFirst: 'Please select a plan first',
-  feature1: 'Activate account',
-  feature2: 'Appear in doctors list',
-  feature3: 'Receive appointments',
-  feature4: 'Priority support',
-  paymentInfo: '💳 Payment Information',
-  scanQR: '📱 Scan to Pay',
-  bankCards: '🏦 Bank Cards',
-  instructions: '📝 Instructions',
-  copy: 'Copy',
-  copied: 'Copied',
-  afterPayment: 'After payment, click the button below:',
-  paidConfirm: 'I have paid — Send Request',
-  requestSent: 'Request sent ✅ — Waiting for admin approval',
-  pendingRequest: 'Pending Request',
-  pendingRequestDesc: 'Your payment request has been sent. Waiting for admin approval.',
-  pendingStatus: 'Pending',
-  approved: 'Approved',
-  rejectedStatus: 'Rejected',
-  paymentHistory: '📜 Payment History',
-  noHistory: 'No history',
-  expiryDate: 'Expiry Date',
-  daysLeft: 'days left',
+    subscription: 'Subscription',
+    choosePlan: '📦 Choose a Plan',
+    choosePlanDesc: 'Please choose a plan to activate your account',
+    monthlyPlan: '1 Month Plan',
+    quarterlyPlan: '6 Months Plan',
+    yearlyPlan: '1 Year Plan',
+    days: 'days',
+    bestValue: 'Best Value',
+    selectPlan: 'Select Plan',
+    selectPlanFirst: 'Please select a plan first',
+    feature1: 'Activate account',
+    feature2: 'Appear in doctors list',
+    feature3: 'Receive appointments',
+    feature4: 'Priority support',
+    paymentInfo: '💳 Payment Information',
+    scanQR: '📱 Scan to Pay',
+    bankCards: '🏦 Bank Cards',
+    instructions: '📝 Instructions',
+    copy: 'Copy',
+    copied: 'Copied',
+    afterPayment: 'After payment, click the button below:',
+    paidConfirm: 'I have paid — Send Request',
+    requestSent: 'Request sent ✅ — Waiting for admin approval',
+    pendingRequest: 'Pending Request',
+    pendingRequestDesc: 'Your payment request has been sent. Waiting for admin approval.',
+    pendingStatus: 'Pending',
+    approved: 'Approved',
+    rejectedStatus: 'Rejected',
+    paymentHistory: '📜 Payment History',
+    noHistory: 'No history',
+    expiryDate: 'Expiry Date',
+    daysLeft: 'days left',
     allPatients: 'Patients',
-  searchPatients: '🔍 Search Patients',
-  totalPatients: 'Total Patients',
-  totalVisits: 'Total Visits',
-  patientsList: '📋 Patients List',
-  lastVisit: 'Last Visit',
-  visits: 'visits',
-  noPatients: 'No patients',
+    searchPatients: '🔍 Search Patients',
+    totalPatients: 'Total Patients',
+    totalVisits: 'Total Visits',
+    patientsList: '📋 Patients List',
+    lastVisit: 'Last Visit',
+    visits: 'visits',
+    noPatients: 'No patients',
     note: 'Note',
     onlyDoctors: 'For doctors only',
     doctorPanel: 'Doctor Panel',
@@ -407,7 +407,7 @@ function switchLang(lang) {
 }
 
 // ============================================================
-// ✅ Login — تەنها دکتۆر (چاککراوە بۆ هێنانی ژمارە)
+// ✅ Login — تەنها دکتۆر (لەگەڵ پشکنینی بەشداربوون)
 // ============================================================
 async function handleLogin(event) {
   event.preventDefault();
@@ -445,7 +445,7 @@ async function handleLogin(event) {
       return;
     }
     
-    // ✅ چارەسەری سەرەکی: ئەگەر ژمارە لە profiles بەتاڵ بوو، لە auth بیخوێنەوە
+    // ✅ چارەسەری ژمارە لە profiles
     if (!profile.phone) {
       const phoneFromAuth = data.user.user_metadata?.phone || data.user.phone;
       if (phoneFromAuth) {
@@ -453,6 +453,48 @@ async function handleLogin(event) {
           .from('profiles')
           .update({ phone: phoneFromAuth })
           .eq('id', data.user.id);
+      }
+    }
+
+    // ✅ پشکنینی بەشداربوون (٧ ڕۆژ، ١ ڕۆژ، ٣ ڕۆژ)
+    const { data: doctor } = await supabaseClient
+      .from('doctors')
+      .select('subscription_expiry_date, status')
+      .eq('id', data.user.id)
+      .maybeSingle();
+
+    if (doctor) {
+      const expiryDate = doctor.subscription_expiry_date
+        ? new Date(doctor.subscription_expiry_date)
+        : null;
+      const now = new Date();
+      const daysLeft = expiryDate
+        ? Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24))
+        : -999;
+
+      // ✅ ١. ئەگەر ٣ ڕۆژ یان زیاتر بەسەرچووە → ناچالاک
+      if (daysLeft < -3) {
+        await supabaseClient.auth.signOut();
+        errorEl.textContent = 'ئەکاونتەکەت ناچالاک کراوە چونکە بەشداربوون بەسەرچووە. تکایە بەشداربوون نوێ بکەرەوە.';
+        errorEl.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = t('login');
+        return;
+      }
+
+      // ✅ ٢. ئەگەر ٧ ڕۆژ ماوە → ئاگادارکردنەوە
+      if (daysLeft <= 7 && daysLeft > 1) {
+        alert(`⏰ بەشداربوونت نزیک بووەتەوە\nتەنها ${daysLeft} ڕۆژ ماوە بۆ کۆتایی هاتنی بەشداربوونت.\nتکایە نوێی بکەرەوە.`);
+      }
+
+      // ✅ ٣. ئەگەر ١ ڕۆژ ماوە → دیسانەوە ئاگادارکردنەوە
+      if (daysLeft <= 1 && daysLeft >= 0) {
+        alert(`🚨 کۆتایی بەشداربوون!\nتەنها ١ ڕۆژ ماوە بۆ کۆتایی هاتنی بەشداربوونت.\nتکایە خێرا نوێی بکەرەوە.`);
+      }
+
+      // ✅ ٤. ئەگەر بەسەرچووە (لە ٠ بۆ -٣ ڕۆژ) → ئاگادارکردنەوە
+      if (daysLeft <= 0 && daysLeft >= -3) {
+        alert(`❌ بەشداربوونت بەسەرچووە\nتکایە لە ماوەی ٣ ڕۆژی داهاتوودا نوێی بکەرەوە بۆ ئەوەی ئەکاونتەکەت ناچالاک نەبێت.`);
       }
     }
     
@@ -484,16 +526,11 @@ async function initDashboard() {
   
   const user = session.user;
   
-  // ✅ هێنانی پڕۆفایل لەگەڵ ژمارە
   const { data: profile } = await supabaseClient
-    .from('profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single();
+    .from('profiles').select('*').eq('id', user.id).single();
   
   if (profile?.role !== 'doctor') { window.location.href = 'index.html'; return; }
   
-  // ✅ چارەسەری ژمارە لە کاتی کردنەوەی داشبۆردیش
   if (!profile.phone) {
     const phoneFromAuth = user.user_metadata?.phone || user.phone;
     if (phoneFromAuth) {
@@ -516,8 +553,67 @@ async function initDashboard() {
   const isActive = doctor?.status === 'active';
   subEl.textContent = isActive ? t('subscriptionActive') : t('subscriptionInactive');
   subEl.className = `subscription-badge ${isActive ? 'active' : 'inactive'}`;
+
+  // ✅ پشکنینی بەشداربوون لە داشبۆرد
+  if (doctor && doctor.subscription_expiry_date) {
+    const expiryDate = new Date(doctor.subscription_expiry_date);
+    const now = new Date();
+    const daysLeft = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+
+    if (daysLeft <= 7 && daysLeft > 1) {
+      showNotificationBanner(
+        `⏰ بەشداربوونت نزیک بووەتەوە`,
+        `تەنها ${daysLeft} ڕۆژ ماوە. تکایە نوێی بکەرەوە.`,
+        'warning'
+      );
+    } else if (daysLeft <= 1 && daysLeft >= 0) {
+      showNotificationBanner(
+        `🚨 کۆتایی بەشداربوون!`,
+        `تەنها ١ ڕۆژ ماوە. تکایە خێرا نوێی بکەرەوە.`,
+        'danger'
+      );
+    } else if (daysLeft <= 0 && daysLeft >= -3) {
+      showNotificationBanner(
+        `❌ بەشداربوونت بەسەرچووە`,
+        `تکایە لە ماوەی ٣ ڕۆژی داهاتوودا نوێی بکەرەوە بۆ ئەوەی ئەکاونتەکەت ناچالاک نەبێت.`,
+        'danger'
+      );
+    }
+  }
   
   await loadAppointments(user.id);
+}
+
+// ✅ پیشاندانی نامەی ئاگادارکردنەوە لە سەرەوەی داشبۆرد
+function showNotificationBanner(title, message, type) {
+  const banner = document.createElement('div');
+  banner.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 24px;
+    background: ${type === 'danger' ? '#E24C4C' : '#E2A93A'};
+    color: white;
+    font-weight: 600;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  `;
+  banner.innerHTML = `
+    <div>
+      <div style="font-size: 16px; margin-bottom: 4px;">${title}</div>
+      <div style="font-size: 13px; font-weight: 400;">${message}</div>
+    </div>
+    <button onclick="this.parentElement.remove()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold;">✕</button>
+  `;
+  document.body.appendChild(banner);
+
+  setTimeout(() => {
+    if (banner.parentElement) banner.remove();
+  }, 10000);
 }
 
 // ============================================================
@@ -571,6 +667,7 @@ function renderAppointments(containerId, appointments, showActions) {
     const patientPhone = apt.profiles?.phone || '';
     const statusColor = apt.status === 'accepted' ? 'accepted' : apt.status === 'pending' ? 'pending' : 'rejected';
     const statusText = apt.status === 'accepted' ? t('accepted') : apt.status === 'pending' ? t('pending') : t('rejected');
+    const queueText = apt.queue_number ? ` — 🎫 #${apt.queue_number}` : '';
     
     const actions = showActions ? `
       <div class="appointment-actions">
@@ -583,7 +680,7 @@ function renderAppointments(containerId, appointments, showActions) {
       <div class="appointment-item" onclick="openPatient('${apt.patient_id}', '${apt.id}')" style="cursor: pointer;">
         <div class="appointment-status ${statusColor}"></div>
         <div class="appointment-content">
-          <div class="appointment-patient">${patientName}</div>
+          <div class="appointment-patient">${patientName}${queueText}</div>
           <div class="appointment-time">
             📅 ${apt.date || ''} — ⏰ ${apt.time || ''}
             ${patientPhone ? ` — 📱 ${patientPhone}` : ''}
@@ -892,7 +989,7 @@ async function loadPrescriptions() {
 }
 
 // ============================================================
-// ✅ Patients Page — هەموو نەخۆشەکان
+// ✅ Patients Page
 // ============================================================
 let allPatients = [];
 
@@ -903,7 +1000,6 @@ async function initPatientsPage() {
   const doctorId = session.user.id;
   
   try {
-    // ✅ وەرگرتنی هەموو نۆرەکان (هەموو کاتەکان)
     const { data: appointments, error } = await supabaseClient
       .from('appointments')
       .select(`
@@ -919,7 +1015,6 @@ async function initPatientsPage() {
     
     if (error) throw error;
     
-    // ✅ گروپکردن بەپێی نەخۆش
     const patientsMap = new Map();
     
     appointments.forEach(apt => {
@@ -941,7 +1036,6 @@ async function initPatientsPage() {
       patient.appointments.push(apt);
       patient.totalVisits++;
       
-      // ✅ دوایین سەردان
       if (!patient.lastVisit || apt.date > patient.lastVisit) {
         patient.lastVisit = apt.date;
       }
@@ -949,11 +1043,9 @@ async function initPatientsPage() {
     
     allPatients = Array.from(patientsMap.values());
     
-    // ✅ ئامارەکان
     document.getElementById('stat-total').textContent = allPatients.length;
     document.getElementById('stat-visits').textContent = appointments.length;
     
-    // ✅ پیشاندان
     renderPatients(allPatients);
     
   } catch (error) {
@@ -963,9 +1055,6 @@ async function initPatientsPage() {
   }
 }
 
-// ============================================================
-// ✅ Render Patients
-// ============================================================
 function renderPatients(patients) {
   const el = document.getElementById('patients-list');
   
@@ -973,7 +1062,7 @@ function renderPatients(patients) {
     el.innerHTML = `
       <div class="empty-state">
         <div class="empty-state-icon">👥</div>
-        <p>هیچ نەخۆشێک نییە</p>
+        <p>${t('noPatients')}</p>
       </div>
     `;
     return;
@@ -986,8 +1075,8 @@ function renderPatients(patients) {
         <div class="patient-name">${patient.name}</div>
         <div class="patient-phone">${patient.phone ? `📱 ${patient.phone}` : ''}</div>
         <div class="patient-meta">
-          📅 دوایین سەردان: ${patient.lastVisit || '—'}
-          • 📊 ${patient.totalVisits} سەردان
+          📅 ${t('lastVisit')}: ${patient.lastVisit || '—'}
+          • 📊 ${patient.totalVisits} ${t('visits')}
         </div>
       </div>
       <div class="patient-arrow">←</div>
@@ -995,9 +1084,6 @@ function renderPatients(patients) {
   `).join('');
 }
 
-// ============================================================
-// ✅ Search / Filter
-// ============================================================
 function filterPatients() {
   const query = document.getElementById('search-input').value.toLowerCase().trim();
   
@@ -1014,15 +1100,12 @@ function filterPatients() {
   renderPatients(filtered);
 }
 
-// ============================================================
-// ✅ Open Patient
-// ============================================================
 function openPatientFromList(patientId) {
   window.location.href = `patient-detail.html?patient_id=${patientId}`;
 }
 
 // ============================================================
-// ✅ Subscription Page — بەشداریکردن
+// ✅ Subscription Page
 // ============================================================
 let currentDoctor = null;
 let currentSettings = null;
@@ -1036,7 +1119,6 @@ async function initSubscriptionPage() {
   currentDoctorId = session.user.id;
   
   try {
-    // ✅ وەرگرتنی زانیاری دکتۆر
     const { data: doctor } = await supabaseClient
       .from('doctors')
       .select('*')
@@ -1045,7 +1127,6 @@ async function initSubscriptionPage() {
     
     currentDoctor = doctor;
     
-    // ✅ وەرگرتنی ڕێکخستنەکانی ئەپ (نرخەکان)
     const { data: settings } = await supabaseClient
       .from('app_settings')
       .select('*')
@@ -1072,7 +1153,6 @@ async function initSubscriptionPage() {
       payment_instructions_ar: null,
     };
     
-    // ✅ پشکنینی داواکاری چاوەڕوان
     const { data: pendingRequests } = await supabaseClient
       .from('payment_requests')
       .select('*')
@@ -1083,13 +1163,8 @@ async function initSubscriptionPage() {
     
     const hasPending = pendingRequests && pendingRequests.length > 0;
     
-    // ✅ پیشاندانی دۆخ
     renderStatusCard(doctor, hasPending, pendingRequests?.[0]);
-    
-    // ✅ پیشاندانی پاکێجەکان
     renderPlans();
-    
-    // ✅ پیشاندانی مێژوو
     await loadPaymentHistory();
     
   } catch (error) {
@@ -1097,9 +1172,6 @@ async function initSubscriptionPage() {
   }
 }
 
-// ============================================================
-// ✅ Status Card
-// ============================================================
 function renderStatusCard(doctor, hasPending, pendingRequest) {
   const el = document.getElementById('status-card');
   const isActive = doctor?.status === 'active';
@@ -1114,14 +1186,13 @@ function renderStatusCard(doctor, hasPending, pendingRequest) {
           <p>${t('pendingRequestDesc')}</p>
           ${pendingRequest ? `
             <p class="status-detail">
-              📦 پاکێج: ${pendingRequest.plan}
-              • 💰 بڕ: $${pendingRequest.amount}
+              📦 ${getPlanLabel(pendingRequest.plan)}
+              • 💰 $${pendingRequest.amount}
             </p>
           ` : ''}
         </div>
       </div>
     `;
-    // ✅ نیشاندانی داواکاری چاوەڕوان
     document.getElementById('pending-request').classList.remove('hidden');
     document.getElementById('pending-request').innerHTML = `
       <div class="pending-card">
@@ -1130,9 +1201,9 @@ function renderStatusCard(doctor, hasPending, pendingRequest) {
         <p>${t('pendingRequestDesc')}</p>
         ${pendingRequest ? `
           <div class="pending-details-grid">
-            <div><strong>📦 پاکێج:</strong> ${getPlanLabel(pendingRequest.plan)}</div>
-            <div><strong>💰 بڕ:</strong> $${pendingRequest.amount}</div>
-            <div><strong>📅 کات:</strong> ${formatDate(pendingRequest.requested_at)}</div>
+            <div><strong>📦 ${t('choosePlan')}:</strong> ${getPlanLabel(pendingRequest.plan)}</div>
+            <div><strong>💰 ${t('paymentInfo')}:</strong> $${pendingRequest.amount}</div>
+            <div><strong>📅 ${t('today')}:</strong> ${formatDate(pendingRequest.requested_at)}</div>
           </div>
         ` : ''}
       </div>
@@ -1165,14 +1236,11 @@ function renderStatusCard(doctor, hasPending, pendingRequest) {
   }
 }
 
-// ============================================================
-// ✅ Plans
-// ============================================================
 function renderPlans() {
   const el = document.getElementById('plans-grid');
   
   if (!currentSettings) {
-    el.innerHTML = '<div class="empty-state">هەڵە لە بارکردنی پاکێجەکان</div>';
+    el.innerHTML = '<div class="empty-state">Error loading plans</div>';
     return;
   }
   
@@ -1226,16 +1294,11 @@ function renderPlans() {
   `).join('');
 }
 
-// ============================================================
-// ✅ Select Plan
-// ============================================================
 function selectPlan(planType) {
   selectedPlan = planType;
   
-  // ✅ نیشاندانی payment section
   document.getElementById('payment-section').classList.remove('hidden');
   
-  // ✅ نیشاندانی QR
   const qrContainer = document.getElementById('qr-container');
   const qrImage = document.getElementById('qr-image');
   if (currentSettings.payment_qr_code_url) {
@@ -1245,10 +1308,8 @@ function selectPlan(planType) {
     qrContainer.classList.add('hidden');
   }
   
-  // ✅ نیشاندانی کارتەکان
   renderBankCards();
   
-  // ✅ نیشاندانی ڕێنمایی
   const instructionsContainer = document.getElementById('instructions-container');
   const instructionsText = document.getElementById('instructions-text');
   const instructions = currentLang === 'ckb' 
@@ -1262,13 +1323,9 @@ function selectPlan(planType) {
     instructionsContainer.classList.add('hidden');
   }
   
-  // ✅ سکرۆل بۆ payment section
   document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-// ============================================================
-// ✅ Bank Cards
-// ============================================================
 function renderBankCards() {
   const el = document.getElementById('cards-list');
   const cards = [
@@ -1278,7 +1335,7 @@ function renderBankCards() {
   ].filter(c => c.number);
   
   if (cards.length === 0) {
-    el.innerHTML = '<p class="empty-state">هیچ کارتێک نییە</p>';
+    el.innerHTML = '<p class="empty-state">No cards</p>';
     return;
   }
   
@@ -1291,9 +1348,6 @@ function renderBankCards() {
   `).join('');
 }
 
-// ============================================================
-// ✅ Copy to Clipboard
-// ============================================================
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text).then(() => {
     alert('✅ ' + t('copied'));
@@ -1302,9 +1356,6 @@ function copyToClipboard(text) {
   });
 }
 
-// ============================================================
-// ✅ Submit Payment Request
-// ============================================================
 async function submitPaymentRequest() {
   if (!selectedPlan) {
     alert(t('selectPlanFirst'));
@@ -1332,8 +1383,6 @@ async function submitPaymentRequest() {
     if (error) throw error;
     
     alert(t('requestSent'));
-    
-    // ✅ دووبارە بارکردنەوە
     window.location.reload();
     
   } catch (error) {
@@ -1344,9 +1393,6 @@ async function submitPaymentRequest() {
   }
 }
 
-// ============================================================
-// ✅ Payment History
-// ============================================================
 async function loadPaymentHistory() {
   const el = document.getElementById('history-list');
   
@@ -1389,9 +1435,6 @@ async function loadPaymentHistory() {
   }
 }
 
-// ============================================================
-// ✅ Helpers
-// ============================================================
 function getPlanLabel(planType) {
   const labels = {
     monthly: t('monthlyPlan'),
