@@ -15,7 +15,6 @@
       <h1 data-i18n="doctorPanel">پانێلی دکتۆر</h1>
     </div>
     <div class="header-actions">
-      <!-- ✅ دوگمەی نەخۆشەکان -->
       <a href="patients.html" class="btn-nav" data-i18n="allPatients">👥 نەخۆشەکان</a>
       <a href="subscription.html" class="btn-nav">💳 <span data-i18n="subscription">بەشداریکردن</span></a>
       <div class="lang-switcher-small">
@@ -26,6 +25,9 @@
       <button class="btn-logout" onclick="handleLogout()" data-i18n="logout">چوونەدەرەوە</button>
     </div>
   </div>
+  
+  <!-- ✅ هەڵبژاردنی دکتۆر (Multi-Doctor) -->
+  <div id="doctor-switcher" class="doctor-switcher hidden"></div>
 </header>
 
   <main class="dashboard-main">
