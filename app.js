@@ -128,6 +128,8 @@ const translations = {
     saved: '✅ پاشەکەوت کرا',
     error: '❌ هەڵە',
     needRecordFirst: '⚠️ تکایە سەرەتا تۆماری پزیشکی دروست بکە',
+    savedAccounts: 'ئەکاونتەکانی پێشوو',
+    chooseDoctor: 'دکتۆر هەڵبژێرە:',
   },
   ar: {
     appName: 'طبيبي',
@@ -246,6 +248,8 @@ const translations = {
     saved: '✅ تم الحفظ',
     error: '❌ خطأ',
     needRecordFirst: '⚠️ يرجى إنشاء سجل طبي أولاً',
+    savedAccounts: 'الحسابات السابقة',
+    chooseDoctor: 'اختر الطبيب:',
   },
   en: {
     appName: 'My Doctor',
@@ -364,6 +368,8 @@ const translations = {
     saved: '✅ Saved',
     error: '❌ Error',
     needRecordFirst: '⚠️ Please create a medical record first',
+    savedAccounts: 'Previous Accounts',
+    chooseDoctor: 'Choose Doctor:',
   }
 };
 
@@ -404,6 +410,96 @@ function switchLang(lang) {
     en: 'My Doctor — Doctor Panel'
   };
   document.title = titles[lang];
+
+  renderDoctorSwitcher();
+}
+
+// ============================================================
+// ✅ Saved Accounts System (مۆڵتی ئەکاونت)
+// ============================================================
+
+function saveAccount(email, fullName, password = null) {
+  try {
+    let saved = JSON.parse(localStorage.getItem('saved-accounts') || '[]');
+    saved = saved.filter(a => a.email !== email);
+    saved.unshift({ 
+      email, 
+      fullName, 
+      password: password,
+      savedAt: new Date().toISOString() 
+    });
+    saved = saved.slice(0, 5);
+    localStorage.setItem('saved-accounts', JSON.stringify(saved));
+    console.log('✅ Account saved:', email);
+  } catch (e) {
+    console.error('❌ saveAccount error:', e);
+  }
+}
+
+function getSavedAccounts() {
+  try {
+    return JSON.parse(localStorage.getItem('saved-accounts') || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function removeSavedAccount(email) {
+  let saved = getSavedAccounts();
+  saved = saved.filter(a => a.email !== email);
+  localStorage.setItem('saved-accounts', JSON.stringify(saved));
+  renderSavedAccounts();
+}
+
+function renderSavedAccounts() {
+  const container = document.getElementById('saved-accounts');
+  const list = document.getElementById('saved-accounts-list');
+  
+  if (!container || !list) return;
+  
+  const accounts = getSavedAccounts();
+  
+  if (accounts.length === 0) {
+    container.classList.add('hidden');
+    return;
+  }
+  
+  container.classList.remove('hidden');
+  
+  list.innerHTML = accounts.map(acc => {
+    const initial = (acc.fullName || acc.email).charAt(0).toUpperCase();
+    return `
+      <div class="saved-account-item" onclick="quickLogin('${acc.email}')">
+        <div class="saved-account-avatar">${initial}</div>
+        <div class="saved-account-info">
+          <div class="saved-account-name">${acc.fullName || 'دکتۆر'}</div>
+          <div class="saved-account-email">${acc.email}</div>
+        </div>
+        <button class="saved-account-remove" onclick="event.stopPropagation(); removeSavedAccount('${acc.email}')">✕</button>
+      </div>
+    `;
+  }).join('');
+}
+
+function quickLogin(email) {
+  const accounts = getSavedAccounts();
+  const account = accounts.find(a => a.email === email);
+  
+  const emailInput = document.getElementById('login-email');
+  const passwordInput = document.getElementById('login-password');
+  
+  if (emailInput && passwordInput) {
+    emailInput.value = email;
+    
+    if (account && account.password) {
+      passwordInput.value = account.password;
+    } else {
+      passwordInput.value = '';
+      passwordInput.focus();
+    }
+    
+    emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 // ============================================================
@@ -429,10 +525,9 @@ async function handleLogin(event) {
     
     if (error) throw error;
     
-    // ✅ پشکنینی ڕۆڵ — تەنها دکتۆر
     const { data: profile, error: profileError } = await supabaseClient
       .from('profiles')
-      .select('role, phone')
+      .select('role, phone, full_name')
       .eq('id', data.user.id)
       .single();
     
@@ -445,7 +540,6 @@ async function handleLogin(event) {
       return;
     }
     
-    // ✅ چارەسەری ژمارە لە profiles
     if (!profile.phone) {
       const phoneFromAuth = data.user.user_metadata?.phone || data.user.phone;
       if (phoneFromAuth) {
@@ -456,7 +550,6 @@ async function handleLogin(event) {
       }
     }
 
-    // ✅ پشکنینی بەشداربوون (٧ ڕۆژ، ١ ڕۆژ، ٣ ڕۆژ)
     const { data: doctor } = await supabaseClient
       .from('doctors')
       .select('subscription_expiry_date, status')
@@ -472,7 +565,6 @@ async function handleLogin(event) {
         ? Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24))
         : -999;
 
-      // ✅ ١. ئەگەر ٣ ڕۆژ یان زیاتر بەسەرچووە → ناچالاک
       if (daysLeft < -3) {
         await supabaseClient.auth.signOut();
         errorEl.textContent = 'ئەکاونتەکەت ناچالاک کراوە چونکە بەشداربوون بەسەرچووە. تکایە بەشداربوون نوێ بکەرەوە.';
@@ -482,21 +574,20 @@ async function handleLogin(event) {
         return;
       }
 
-      // ✅ ٢. ئەگەر ٧ ڕۆژ ماوە → ئاگادارکردنەوە
       if (daysLeft <= 7 && daysLeft > 1) {
         alert(`⏰ بەشداربوونت نزیک بووەتەوە\nتەنها ${daysLeft} ڕۆژ ماوە بۆ کۆتایی هاتنی بەشداربوونت.\nتکایە نوێی بکەرەوە.`);
       }
 
-      // ✅ ٣. ئەگەر ١ ڕۆژ ماوە → دیسانەوە ئاگادارکردنەوە
       if (daysLeft <= 1 && daysLeft >= 0) {
         alert(`🚨 کۆتایی بەشداربوون!\nتەنها ١ ڕۆژ ماوە بۆ کۆتایی هاتنی بەشداربوونت.\nتکایە خێرا نوێی بکەرەوە.`);
       }
 
-      // ✅ ٤. ئەگەر بەسەرچووە (لە ٠ بۆ -٣ ڕۆژ) → ئاگادارکردنەوە
       if (daysLeft <= 0 && daysLeft >= -3) {
         alert(`❌ بەشداربوونت بەسەرچووە\nتکایە لە ماوەی ٣ ڕۆژی داهاتوودا نوێی بکەرەوە بۆ ئەوەی ئەکاونتەکەت ناچالاک نەبێت.`);
       }
     }
+
+    saveAccount(email, profile.full_name || email, password);
     
     window.location.href = 'dashboard.html';
     
@@ -515,6 +606,121 @@ async function handleLogin(event) {
 async function handleLogout() {
   await supabaseClient.auth.signOut();
   window.location.href = 'index.html';
+}
+
+// ============================================================
+// ✅ Multi-Doctor Management
+// ============================================================
+let availableDoctors = [];
+let currentDoctorId = null;
+
+async function loadAvailableDoctors() {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (!session) return;
+
+  try {
+    const { data: secretaryLinks } = await supabaseClient
+      .from('doctor_secretaries')
+      .select('doctor_id')
+      .eq('secretary_id', session.user.id);
+
+    let doctorIds = [];
+
+    if (secretaryLinks && secretaryLinks.length > 0) {
+      doctorIds = secretaryLinks.map(l => l.doctor_id);
+    } else {
+      const { data: allDoctors } = await supabaseClient
+        .from('doctors')
+        .select('id')
+        .eq('status', 'active');
+      
+      if (allDoctors) {
+        doctorIds = allDoctors.map(d => d.id);
+      }
+    }
+
+    if (doctorIds.length === 0) {
+      availableDoctors = [];
+      return;
+    }
+
+    const { data: doctors } = await supabaseClient
+      .from('profiles')
+      .select('id, full_name')
+      .in('id', doctorIds);
+
+    const { data: doctorDetails } = await supabaseClient
+      .from('doctors')
+      .select('id, specialty, status')
+      .in('id', doctorIds);
+
+    const detailsMap = {};
+    (doctorDetails || []).forEach(d => {
+      detailsMap[d.id] = d;
+    });
+
+    availableDoctors = (doctors || []).map(p => ({
+      id: p.id,
+      name: p.full_name,
+      specialty: detailsMap[p.id]?.specialty || '',
+      status: detailsMap[p.id]?.status || 'pending',
+    }));
+
+    console.log('✅ Available doctors:', availableDoctors.length);
+  } catch (error) {
+    console.error('❌ loadAvailableDoctors error:', error);
+    availableDoctors = [];
+  }
+}
+
+function renderDoctorSwitcher() {
+  const container = document.getElementById('doctor-switcher');
+  if (!container) return;
+
+  if (availableDoctors.length <= 1) {
+    container.classList.add('hidden');
+    return;
+  }
+
+  container.classList.remove('hidden');
+
+  container.innerHTML = `
+    <div class="doctor-switcher-label">${t('chooseDoctor')}</div>
+    <div class="doctor-switcher-list">
+      ${availableDoctors.map(d => `
+        <button 
+          class="doctor-switch-btn ${d.id === currentDoctorId ? 'active' : ''}"
+          onclick="switchDoctor('${d.id}')"
+        >
+          <span class="doctor-switch-avatar">${(d.name || '?').charAt(0)}</span>
+          <span class="doctor-switch-name">${d.name || 'دکتۆر'}</span>
+          <span class="doctor-switch-specialty">${d.specialty || ''}</span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+}
+
+async function switchDoctor(doctorId) {
+  currentDoctorId = doctorId;
+  localStorage.setItem('selected-doctor-id', doctorId);
+  
+  await loadAppointments(doctorId);
+  renderDoctorSwitcher();
+  
+  console.log('✅ Switched to doctor:', doctorId);
+}
+
+async function linkSecretaryToDoctor(secretaryId, doctorId) {
+  try {
+    await supabaseClient.from('doctor_secretaries').insert({
+      secretary_id: secretaryId,
+      doctor_id: doctorId,
+    });
+    console.log('✅ Secretary linked to doctor');
+  } catch (error) {
+    console.error('❌ linkSecretaryToDoctor error:', error);
+  }
 }
 
 // ============================================================
@@ -541,8 +747,10 @@ async function initDashboard() {
     }
   }
   
+  const targetDoctorId = currentDoctorId || user.id;
+  
   const { data: doctor } = await supabaseClient
-    .from('doctors').select('*').eq('id', user.id).single();
+    .from('doctors').select('*').eq('id', targetDoctorId).single();
   
   document.getElementById('welcome-text').textContent = 
     `${t('welcome')}، ${profile?.full_name || user.email}`;
@@ -554,7 +762,6 @@ async function initDashboard() {
   subEl.textContent = isActive ? t('subscriptionActive') : t('subscriptionInactive');
   subEl.className = `subscription-badge ${isActive ? 'active' : 'inactive'}`;
 
-  // ✅ پشکنینی بەشداربوون لە داشبۆرد
   if (doctor && doctor.subscription_expiry_date) {
     const expiryDate = new Date(doctor.subscription_expiry_date);
     const now = new Date();
@@ -575,16 +782,15 @@ async function initDashboard() {
     } else if (daysLeft <= 0 && daysLeft >= -3) {
       showNotificationBanner(
         `❌ بەشداربوونت بەسەرچووە`,
-        `تکایە لە ماوەی ٣ ڕۆژی داهاتوودا نوێی بکەرەوە بۆ ئەوەی ئەکاونتەکەت ناچالاک نەبێت.`,
+        `تکایە لە ماوەی ٣ ڕۆژی داهاتوودا نوێی بکەرەوە.`,
         'danger'
       );
     }
   }
   
-  await loadAppointments(user.id);
+  await loadAppointments(targetDoctorId);
 }
 
-// ✅ پیشاندانی نامەی ئاگادارکردنەوە لە سەرەوەی داشبۆرد
 function showNotificationBanner(title, message, type) {
   const banner = document.createElement('div');
   banner.style.cssText = `
@@ -652,7 +858,7 @@ async function loadAppointments(doctorId) {
 }
 
 // ============================================================
-// ✅ Render Appointments
+// ✅ Render Appointments (چارەسەری ناوی نەخۆش)
 // ============================================================
 function renderAppointments(containerId, appointments, showActions) {
   const el = document.getElementById(containerId);
@@ -663,7 +869,9 @@ function renderAppointments(containerId, appointments, showActions) {
   }
   
   el.innerHTML = appointments.map(apt => {
-    const patientName = apt.profiles?.full_name || t('patient');
+    const patientName = apt.profiles?.full_name && apt.profiles.full_name.trim() !== ''
+      ? apt.profiles.full_name
+      : t('patient');
     const patientPhone = apt.profiles?.phone || '';
     const statusColor = apt.status === 'accepted' ? 'accepted' : apt.status === 'pending' ? 'pending' : 'rejected';
     const statusText = apt.status === 'accepted' ? t('accepted') : apt.status === 'pending' ? t('pending') : t('rejected');
@@ -710,8 +918,9 @@ async function updateStatus(appointmentId, status, btn) {
     
     if (error) throw error;
     
-    const { data: { session } } = await supabaseClient.auth.getSession();
-    if (session) await loadAppointments(session.user.id);
+    if (currentDoctorId) {
+      await loadAppointments(currentDoctorId);
+    }
     
   } catch (error) {
     console.error('Update status error:', error);
@@ -997,7 +1206,7 @@ async function initPatientsPage() {
   const { data: { session } } = await supabaseClient.auth.getSession();
   if (!session) { window.location.href = 'index.html'; return; }
   
-  const doctorId = session.user.id;
+  const doctorId = currentDoctorId || session.user.id;
   
   try {
     const { data: appointments, error } = await supabaseClient
@@ -1110,19 +1319,19 @@ function openPatientFromList(patientId) {
 let currentDoctor = null;
 let currentSettings = null;
 let selectedPlan = null;
-let currentDoctorId = null;
+let currentSubscriptionDoctorId = null;
 
 async function initSubscriptionPage() {
   const { data: { session } } = await supabaseClient.auth.getSession();
   if (!session) { window.location.href = 'index.html'; return; }
   
-  currentDoctorId = session.user.id;
+  currentSubscriptionDoctorId = session.user.id;
   
   try {
     const { data: doctor } = await supabaseClient
       .from('doctors')
       .select('*')
-      .eq('id', currentDoctorId)
+      .eq('id', currentSubscriptionDoctorId)
       .single();
     
     currentDoctor = doctor;
@@ -1156,7 +1365,7 @@ async function initSubscriptionPage() {
     const { data: pendingRequests } = await supabaseClient
       .from('payment_requests')
       .select('*')
-      .eq('doctor_id', currentDoctorId)
+      .eq('doctor_id', currentSubscriptionDoctorId)
       .eq('status', 'pending')
       .order('requested_at', { ascending: false })
       .limit(1);
@@ -1372,7 +1581,7 @@ async function submitPaymentRequest() {
     const { error } = await supabaseClient
       .from('payment_requests')
       .insert({
-        doctor_id: currentDoctorId,
+        doctor_id: currentSubscriptionDoctorId,
         plan: selectedPlan,
         amount: planPrice,
         currency: 'USD',
@@ -1400,7 +1609,7 @@ async function loadPaymentHistory() {
     const { data } = await supabaseClient
       .from('payment_requests')
       .select('*')
-      .eq('doctor_id', currentDoctorId)
+      .eq('doctor_id', currentSubscriptionDoctorId)
       .order('requested_at', { ascending: false });
     
     if (!data || data.length === 0) {
@@ -1462,18 +1671,30 @@ function formatDate(dateStr) {
 // ============================================================
 // ✅ Router
 // ============================================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   switchLang(currentLang);
   
   const path = window.location.pathname;
   
   if (path.includes('dashboard.html')) {
-    initDashboard();
+    await loadAvailableDoctors();
+    
+    const savedDoctorId = localStorage.getItem('selected-doctor-id');
+    if (savedDoctorId && availableDoctors.find(d => d.id === savedDoctorId)) {
+      currentDoctorId = savedDoctorId;
+    } else if (availableDoctors.length > 0) {
+      currentDoctorId = availableDoctors[0].id;
+    }
+    
+    renderDoctorSwitcher();
+    await initDashboard();
   } else if (path.includes('patient-detail.html')) {
     initPatientDetail();
   } else if (path.includes('patients.html')) {
     initPatientsPage();
   } else if (path.includes('subscription.html')) {
     initSubscriptionPage();
+  } else if (path.endsWith('/') || path.includes('index.html')) {
+    renderSavedAccounts();
   }
 });
